@@ -1,0 +1,1510 @@
+{
+	"info": {
+		"_postman_id": "697fa108-b0c2-4c81-823f-31bb6d67e652",
+		"name": "Simple Grocery Store API",
+		"description": "**API Documentation:**\n\n[https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Happy Path",
+			"item": [
+				{
+					"name": "Register API client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4226f7f7-369e-44a8-be65-2afc063a3b14",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "3f8676b7-0d95-4d91-b2c7-943c171d9f78",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"clientName\": \"Postman on Valentin's computer\",\n   \"clientEmail\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/api-clients"
+					},
+					"response": []
+				},
+				{
+					"name": "API Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f482703-a0e7-4cb1-936c-b57a01a39050",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "88fd4f45-7948-49c9-9025-bf06ef0cfbe1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45812eb3-740a-4603-9efe-e582f9e1a0d6",
+								"exec": [
+									"// Parse the response body JSON",
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Validate variable preconditions and set variable\", () => {",
+									"    // Check that response body is an array",
+									"    pm.expect(responseJson).to.be.an('array');",
+									"",
+									"    // Check if the array contains at least one object",
+									"    pm.expect(responseJson.length).to.be.above(0);",
+									"    console.log(responseJson.length);",
+									"",
+									"    // Check if each object in the array have 'id' property",
+									"    responseJson.forEach((product) => {",
+									"        pm.expect(product).to.haveOwnProperty('id');",
+									"        });",
+									"    ",
+									"    // Filter the products with 'inStock' parameter as true",
+									"    const inStockProducts = responseJson.filter(product => product.inStock === true);",
+									"",
+									"    // Check if there are any products that match the criteria",
+									"    pm.expect(inStockProducts.length).to.be.above(0);",
+									"",
+									"    // Extract the available product IDs from the response",
+									"    const productIds = inStockProducts.map(product => product.id);",
+									"    ",
+									"    // Set the product IDs as a variable in Postman's collection",
+									"    pm.environment.set('productIds', JSON.stringify(productIds));",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "d8b05a3e-8a91-4ab2-9c9d-4197815d6565",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?results=20",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "fresh-produce",
+									"disabled": true
+								},
+								{
+									"key": "results",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "649b30ba-c584-4a25-bf16-109edbab2f1c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "752e1144-7ffc-4f16-a1a4-4e95d03b75f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/:productId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"id": "93655b22-c2f2-41b4-bdab-a5e584c14b26",
+									"key": "productId",
+									"value": "8739",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f363dd7e-b4b5-4c87-9ad8-b401724a2cac",
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"",
+									"pm.test(\"Validate variable preconditions and set variable\", () => {",
+									"    // Check that response body is an array",
+									"    pm.expect(responseJson).to.be.an('object');",
+									"",
+									"    // Check if object has'cartId' property and it's a string",
+									"    pm.expect(responseJson).to.haveOwnProperty('cartId').and.be.a('string');",
+									"    ",
+									"    // Set the cart IDs as a variable in Postman's collection",
+									"    pm.environment.set(\"cartId\", responseJson.cartId);",
+									"});",
+									"",
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "78d56782-f0a6-4c24-8849-2f23d5b54ce8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/carts"
+					},
+					"response": []
+				},
+				{
+					"name": "Add item to cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "885ca8e5-39cd-4b13-8c5f-9fe5ad0a16ac",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test('Item was created', () => {",
+									"    // validate variable preconditions",
+									"    pm.expect(response).to.be.a('object');",
+									"    pm.expect(response.created).has.true;",
+									"    pm.expect(response.itemId).to.be.a('number');",
+									"    // set variable",
+									"    pm.environment.set(\"itemId\", response.itemId);",
+									"});",
+									"",
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "724c7ad3-3c0e-40e1-905d-4685659eca6e",
+								"exec": [
+									"// Get the product IDs from the environment variable",
+									"const productIds = JSON.parse(pm.variables.get('productIds'));",
+									"",
+									"// Get a random index within the range of the array length",
+									"const randomIndex = Math.floor(Math.random() * productIds.length);",
+									"",
+									"// Get the random ID using the random index",
+									"const randomId = productIds[randomIndex];",
+									"",
+									"// Set the random ID as a variable in Postman's environment",
+									"pm.environment.set('randomProductId', randomId);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "36ad1aba-b172-4467-a85e-87a763b3bdd0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"productId\": {{randomProductId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								""
+							],
+							"variable": [
+								{
+									"id": "4125cca7-3cca-422b-878d-fe710fe378d4",
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update quantity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e688f71a-0334-4543-8341-33f6bfc15d8b",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "180e79af-69fc-414e-981c-b526dee41d41",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								},
+								{
+									"key": "itemId",
+									"value": "{{itemId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace product in cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3300b8fa-dbd0-4819-bbf7-f42de6550eaf",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "5d51b760-3187-496a-b063-0d6380724d3b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\": 4643,\n    \"quantity\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								},
+								{
+									"key": "itemId",
+									"value": "{{itemId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete item in cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d80e9226-09d9-4c10-95d8-5b7847030ed0",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "705fa95a-93a9-49ad-9761-184a1f8117e7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items/:itemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								":itemId"
+							],
+							"variable": [
+								{
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								},
+								{
+									"key": "itemId",
+									"value": "{{itemId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add item to cart - 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "885ca8e5-39cd-4b13-8c5f-9fe5ad0a16ac",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test('Item was created', () => {",
+									"    // validate variable preconditions",
+									"    pm.expect(response).to.be.a('object');",
+									"    pm.expect(response.created).has.true;",
+									"    pm.expect(response.itemId).to.be.a('number');",
+									"    // set variable",
+									"    pm.environment.set(\"itemId\", response.itemId);",
+									"});",
+									"",
+									"pm.test(\"Status code is 201\", () => {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "724c7ad3-3c0e-40e1-905d-4685659eca6e",
+								"exec": [
+									"// Get the product IDs from the environment variable",
+									"const productIds = JSON.parse(pm.variables.get('productIds'));",
+									"",
+									"// Get a random index within the range of the array length",
+									"const randomIndex = Math.floor(Math.random() * productIds.length);",
+									"",
+									"// Get the random ID using the random index",
+									"const randomId = productIds[randomIndex];",
+									"",
+									"// Set the random ID as a variable in Postman's environment",
+									"pm.environment.set('randomProductId', randomId);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "74c0f14c-0621-436e-b4f4-57c6b4990f7e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"productId\": {{randomProductId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items",
+								""
+							],
+							"variable": [
+								{
+									"id": "4125cca7-3cca-422b-878d-fe710fe378d4",
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c293ef1f-fa51-4455-87a0-99bcd89b7a38",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "92dda31d-bdd1-4658-97e5-62d9a5b6e23e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId"
+							],
+							"variable": [
+								{
+									"id": "8bc671b5-b769-4c1a-8a3c-0027efa71bf7",
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cart items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22b62902-5984-495e-9347-57ecc0d2ac19",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "71197bfd-1038-4958-a0a2-56d585edf4fd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/carts/:cartId/items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carts",
+								":cartId",
+								"items"
+							],
+							"variable": [
+								{
+									"id": "acab7015-c237-48c6-ac59-1e3a59351876",
+									"key": "cartId",
+									"value": "{{cartId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "655b123d-3d81-400b-bd9f-7e17e58cf269",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test('Order was created', () => {",
+									"    // validate variable preconditions",
+									"    pm.expect(response).to.be.a('object');",
+									"    pm.expect(response.created).has.true;",
+									"    pm.expect(response.orderId).to.be.a('string');",
+									"    // set variable",
+									"    pm.environment.set(\"orderId\", response.orderId);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "82bdc48c-14ff-47f8-91e6-79e208f17d59",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cartId\": \"{{cartId}}\",\n    \"customerName\": \"{{$randomFullName}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Update order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50c87fb8-afdd-4a97-91ef-ecf6c563c1b6",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "0b467f45-163e-4540-888a-189c44b09302",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"comment\": \"{{$randomLoremSentence}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49b16d1a-00c1-4c3c-8cf9-40a6ca3e0449",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "6eb6c143-ef59-41df-9852-92b2bf894f46",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "11214569-e6c3-4c13-b1e5-cc70335c5fb4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test('Last created order is presented in list of orders', () => {",
+									"    const response = pm.response.json();",
+									"    const orderId = pm.variables.get('orderId');",
+									"    const order = response.find((order) => order.id === orderId);",
+									"    pm.expect(order, `Order with ID ${orderId} not found`).to.be.an('object');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "7c21e073-0071-43d9-870e-757fe5c84a3d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/orders"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9a9190c-c1f0-480c-abb2-263082d488f6",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "55a0db20-83bd-49ca-9355-7053d97d544e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"key": "orderId",
+									"value": "{{orderId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get deleted order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49b16d1a-00c1-4c3c-8cf9-40a6ca3e0449",
+								"exec": [
+									"const response = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Response body contains 'error' property\", () => {",
+									"    pm.expect(response).haveOwnProperty('error');",
+									"});",
+									"",
+									"pm.test(\"Error message contains the deleted order id.\", () => {",
+									"    pm.expect(response.error).to.contain(pm.variables.get(\"orderId\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "f8479d52-a0a4-417c-b3da-69c4162bcfa6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/orders/:orderId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"orders",
+								":orderId"
+							],
+							"variable": [
+								{
+									"id": "b604a7b9-d400-4adc-8834-a17b7f426777",
+									"key": "orderId",
+									"value": "{{orderId}}",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "33e6f6fd-c634-411c-9d33-3da9741cff14"
+		},
+		{
+			"name": "Missing Authorization",
+			"item": [
+				{
+					"name": "Missing Header",
+					"item": [
+						{
+							"name": "Create an order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "655b123d-3d81-400b-bd9f-7e17e58cf269",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "4f8c1787-6b95-47b2-8917-06cb57aeeda1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cartId\": \"{{cartId}}\",\n    \"customerName\": \"{{$randomFullName}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/orders"
+							},
+							"response": []
+						},
+						{
+							"name": "Get all orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "11214569-e6c3-4c13-b1e5-cc70335c5fb4",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "628cd206-c7c4-4678-9226-fc857f7ab5cf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": "{{baseUrl}}/orders"
+							},
+							"response": []
+						}
+					],
+					"_postman_id": "625ef44b-945e-4ab0-ab07-fb1967302fc8",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "508e13b0-6476-4f6a-a553-49d7881ddba0",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1459d8c1-3c26-4c82-a54f-033b9439b71a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Error message is 'Missing Authorization header.'\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.error).to.equal(\"Missing Authorization header.\")",
+									"});"
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Invalid Token",
+					"item": [
+						{
+							"name": "Create an order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "655b123d-3d81-400b-bd9f-7e17e58cf269",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "2fde4ebe-baf5-4f90-8dab-34a566813117",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer invalidToken",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cartId\": \"{{cartId}}\",\n    \"customerName\": \"{{$randomFullName}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/orders"
+							},
+							"response": []
+						},
+						{
+							"name": "Get all orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "11214569-e6c3-4c13-b1e5-cc70335c5fb4",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "a1b31f63-852e-4770-ab27-9d948425c719",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer invalidToken",
+										"type": "text"
+									}
+								],
+								"url": "{{baseUrl}}/orders"
+							},
+							"response": []
+						}
+					],
+					"_postman_id": "67bc524b-7b6b-4292-a563-edba1ea0555a",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "abdb9d39-2029-4df9-96ec-57b71f0288b6",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca40ae21-54a1-4629-89e2-3c9f16a4c974",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Error message is 'Invalid bearer token.'\", function () {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.error).to.equal(\"Invalid bearer token.\")",
+									"});"
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"_postman_id": "a9700f91-b0d5-4a7d-b42c-bf3bbb148737",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "58f10c03-6cd4-464a-b86c-137f100f5cd6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d1d48d8-f548-4557-9d0f-3921a0419b78",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Invalid Inputs",
+			"item": [
+				{
+					"name": "Get all products - invalid category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45812eb3-740a-4603-9efe-e582f9e1a0d6",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Error message is correct\", () => {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.error).to.have.string(\"Invalid value for query parameter 'category'.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "50b5adf1-69f2-4e09-a67f-4d2c00bfa041",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?category=invalid-category",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "invalid-category"
+								},
+								{
+									"key": "results",
+									"value": "20",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products - Results > maximum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45812eb3-740a-4603-9efe-e582f9e1a0d6",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Error message is correct\", () => {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.error).to.eql(\"Invalid value for query parameter 'results'. Cannot be greater than 20.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "35d32c6a-b733-450f-b826-6979bfab2310",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?results=21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "invalid-category",
+									"disabled": true
+								},
+								{
+									"key": "results",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products - Results < minimum",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45812eb3-740a-4603-9efe-e582f9e1a0d6",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Error message is correct\", () => {",
+									"    const response = pm.response.json();",
+									"    pm.expect(response.error).to.eql(\"Invalid value for query parameter 'results'. Must be greater than 0.\")",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "13fd7cc0-d49d-4971-af2c-15cfbc178acd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?results=-1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "invalid-category",
+									"disabled": true
+								},
+								{
+									"key": "results",
+									"value": "-1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all products - Results =0",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45812eb3-740a-4603-9efe-e582f9e1a0d6",
+								"exec": [
+									"console.log(pm.environment.name);",
+									"if(pm.environment.name === 'Testing') {",
+									"    pm.test(\"Status code is 400\", function () {",
+									"        pm.response.to.have.status(400);",
+									"    });",
+									"",
+									"    pm.test(\"Error message is correct\", () => {",
+									"        const response = pm.response.json();",
+									"        pm.expect(response.error).to.eql(\"Invalid value for query parameter 'results'. Must be greater than 0.\")",
+									"    });",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "13a9f77a-7d83-45d6-88a8-2d53da1c6af9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products?results=0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "invalid-category",
+									"disabled": true
+								},
+								{
+									"key": "results",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "2d5c6b77-6e79-4ce2-8930-af476a823114"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d6cb20a6-b2bb-4ff2-bb25-ab700e2536aa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "87cd1fa7-6943-4414-ab14-e3d09e47bd92",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6f9ec325-2342-4071-bb2c-7babb9169865",
+			"key": "baseUrl",
+			"value": "https://simple-grocery-store-api.glitch.me",
+			"type": "string"
+		},
+		{
+			"id": "db522f88-31e8-42e7-bde1-08654ca119fe",
+			"key": "accessToken",
+			"value": "171e6120d7e6046191d946e9d5af6ed1edfd495d7afcbac483a9d063bcc32c60",
+			"type": "string"
+		},
+		{
+			"id": "d38714b4-ffda-4c43-9528-4609342fe6ac",
+			"key": "cartId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "80ecea2c-0d77-4e8b-b662-064f7ee89ab3",
+			"key": "orderId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "0f8cabcc-da24-45f3-9f1b-b1eb00bcc1f9",
+			"key": "productIds",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "a050269c-d2d1-4998-84aa-3374a01316e5",
+			"key": "randomProductId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "b115231d-2a8c-4d12-af86-bb0845bbf8b1",
+			"key": "itemId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "7b3fd83b-e170-44f7-9f00-0cc9d0dc3b9a",
+			"key": "test",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
