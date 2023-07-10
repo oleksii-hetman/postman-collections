@@ -34,7 +34,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"clientName\": \"Postman on Valentin's computer\",\n   \"clientEmail\": \"{{$randomEmail}}\"\n}",
+							"raw": "{\n   \"clientName\": \"New Client Name\",\n   \"clientEmail\": \"{{$randomEmail}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1442,44 +1442,44 @@
 	],
 	"variable": [
 		{
-			"id": "f1b04c8a-73cc-419e-8c04-582e73dcb69d",
+			"id": "2be4a873-2283-43af-b846-cea100e707cd",
 			"key": "baseUrl",
 			"value": "https://simple-grocery-store-api.glitch.me"
 		},
 		{
-			"id": "012852fb-2392-4e98-89fa-d3bc61da3e33",
+			"id": "ea146e90-ca4d-4d3f-8497-b3a04f88b398",
 			"key": "accessToken",
 			"value": "171e6120d7e6046191d946e9d5af6ed1edfd495d7afcbac483a9d063bcc32c60",
 			"type": "string"
 		},
 		{
-			"id": "2d4312b9-de7e-4ca4-b34e-4d81fca364b5",
+			"id": "bd83c3e3-c8c2-4f81-a6a2-7f5e07cde07c",
 			"key": "cartId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "4650d450-6a52-4b66-817b-f8016c50a7ee",
+			"id": "fa684bf1-535c-42ef-be4b-3a95d5c14dda",
 			"key": "orderId",
 			"value": ""
 		},
 		{
-			"id": "c95f795b-8abd-4b97-b7b2-576c8ea6c050",
+			"id": "f4d4c2c3-f72d-4e36-b3b8-db15c6734e0a",
 			"key": "productIds",
 			"value": ""
 		},
 		{
-			"id": "a6e38e95-f2b6-4cb1-9705-11be9b0e830d",
+			"id": "ab4455cf-04ff-4519-9e91-8b2c901a27af",
 			"key": "randomProductId",
 			"value": ""
 		},
 		{
-			"id": "56f38220-23fc-498c-a1cf-f27d7e6e3ef5",
+			"id": "7938e580-9f1c-4292-8ece-1278228a6c8e",
 			"key": "itemId",
 			"value": ""
 		},
 		{
-			"id": "7dc0ca4c-be75-426d-990c-5f91a610fb72",
+			"id": "82a0f80c-ca7a-4c8e-beb5-316a4626135a",
 			"key": "test",
 			"value": ""
 		}
