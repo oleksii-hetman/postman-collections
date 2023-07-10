@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "697fa108-b0c2-4c81-823f-31bb6d67e652",
-		"name": "Simple Grocery Store API",
+		"name": "Simple Grocery Store API - New",
 		"description": "**API Documentation:**\n\n[https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -25,7 +25,7 @@
 							}
 						}
 					],
-					"_postman_id": "3f8676b7-0d95-4d91-b2c7-943c171d9f78",
+					"id": "3f8676b7-0d95-4d91-b2c7-943c171d9f78",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -61,7 +61,7 @@
 							}
 						}
 					],
-					"_postman_id": "88fd4f45-7948-49c9-9025-bf06ef0cfbe1",
+					"id": "88fd4f45-7948-49c9-9025-bf06ef0cfbe1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -117,7 +117,7 @@
 							}
 						}
 					],
-					"_postman_id": "d8b05a3e-8a91-4ab2-9c9d-4197815d6565",
+					"id": "d8b05a3e-8a91-4ab2-9c9d-4197815d6565",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -163,7 +163,7 @@
 							}
 						}
 					],
-					"_postman_id": "752e1144-7ffc-4f16-a1a4-4e95d03b75f9",
+					"id": "752e1144-7ffc-4f16-a1a4-4e95d03b75f9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -183,8 +183,7 @@
 								{
 									"id": "93655b22-c2f2-41b4-bdab-a5e584c14b26",
 									"key": "productId",
-									"value": "8739",
-									"type": "string"
+									"value": "8739"
 								}
 							]
 						}
@@ -221,7 +220,7 @@
 							}
 						}
 					],
-					"_postman_id": "78d56782-f0a6-4c24-8849-2f23d5b54ce8",
+					"id": "78d56782-f0a6-4c24-8849-2f23d5b54ce8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -280,7 +279,7 @@
 							}
 						}
 					],
-					"_postman_id": "36ad1aba-b172-4467-a85e-87a763b3bdd0",
+					"id": "36ad1aba-b172-4467-a85e-87a763b3bdd0",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -311,8 +310,7 @@
 								{
 									"id": "4125cca7-3cca-422b-878d-fe710fe378d4",
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -335,7 +333,7 @@
 							}
 						}
 					],
-					"_postman_id": "180e79af-69fc-414e-981c-b526dee41d41",
+					"id": "180e79af-69fc-414e-981c-b526dee41d41",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -365,13 +363,11 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								},
 								{
 									"key": "itemId",
-									"value": "{{itemId}}",
-									"type": "string"
+									"value": "{{itemId}}"
 								}
 							]
 						}
@@ -394,7 +390,7 @@
 							}
 						}
 					],
-					"_postman_id": "5d51b760-3187-496a-b063-0d6380724d3b",
+					"id": "5d51b760-3187-496a-b063-0d6380724d3b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -424,13 +420,11 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								},
 								{
 									"key": "itemId",
-									"value": "{{itemId}}",
-									"type": "string"
+									"value": "{{itemId}}"
 								}
 							]
 						}
@@ -453,7 +447,7 @@
 							}
 						}
 					],
-					"_postman_id": "705fa95a-93a9-49ad-9761-184a1f8117e7",
+					"id": "705fa95a-93a9-49ad-9761-184a1f8117e7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -474,13 +468,11 @@
 							"variable": [
 								{
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								},
 								{
 									"key": "itemId",
-									"value": "{{itemId}}",
-									"type": "string"
+									"value": "{{itemId}}"
 								}
 							]
 						}
@@ -535,7 +527,7 @@
 							}
 						}
 					],
-					"_postman_id": "74c0f14c-0621-436e-b4f4-57c6b4990f7e",
+					"id": "74c0f14c-0621-436e-b4f4-57c6b4990f7e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -566,8 +558,7 @@
 								{
 									"id": "4125cca7-3cca-422b-878d-fe710fe378d4",
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -590,7 +581,7 @@
 							}
 						}
 					],
-					"_postman_id": "92dda31d-bdd1-4658-97e5-62d9a5b6e23e",
+					"id": "92dda31d-bdd1-4658-97e5-62d9a5b6e23e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -610,8 +601,7 @@
 								{
 									"id": "8bc671b5-b769-4c1a-8a3c-0027efa71bf7",
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -634,7 +624,7 @@
 							}
 						}
 					],
-					"_postman_id": "71197bfd-1038-4958-a0a2-56d585edf4fd",
+					"id": "71197bfd-1038-4958-a0a2-56d585edf4fd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -655,8 +645,7 @@
 								{
 									"id": "acab7015-c237-48c6-ac59-1e3a59351876",
 									"key": "cartId",
-									"value": "{{cartId}}",
-									"type": "string"
+									"value": "{{cartId}}"
 								}
 							]
 						}
@@ -691,7 +680,7 @@
 							}
 						}
 					],
-					"_postman_id": "82bdc48c-14ff-47f8-91e6-79e208f17d59",
+					"id": "82bdc48c-14ff-47f8-91e6-79e208f17d59",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -734,7 +723,7 @@
 							}
 						}
 					],
-					"_postman_id": "0b467f45-163e-4540-888a-189c44b09302",
+					"id": "0b467f45-163e-4540-888a-189c44b09302",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -769,8 +758,7 @@
 							"variable": [
 								{
 									"key": "orderId",
-									"value": "{{orderId}}",
-									"type": "string"
+									"value": "{{orderId}}"
 								}
 							]
 						}
@@ -793,7 +781,7 @@
 							}
 						}
 					],
-					"_postman_id": "6eb6c143-ef59-41df-9852-92b2bf894f46",
+					"id": "6eb6c143-ef59-41df-9852-92b2bf894f46",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -819,8 +807,7 @@
 							"variable": [
 								{
 									"key": "orderId",
-									"value": "{{orderId}}",
-									"type": "string"
+									"value": "{{orderId}}"
 								}
 							]
 						}
@@ -850,7 +837,7 @@
 							}
 						}
 					],
-					"_postman_id": "7c21e073-0071-43d9-870e-757fe5c84a3d",
+					"id": "7c21e073-0071-43d9-870e-757fe5c84a3d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -884,7 +871,7 @@
 							}
 						}
 					],
-					"_postman_id": "55a0db20-83bd-49ca-9355-7053d97d544e",
+					"id": "55a0db20-83bd-49ca-9355-7053d97d544e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -910,8 +897,7 @@
 							"variable": [
 								{
 									"key": "orderId",
-									"value": "{{orderId}}",
-									"type": "string"
+									"value": "{{orderId}}"
 								}
 							]
 						}
@@ -944,7 +930,7 @@
 							}
 						}
 					],
-					"_postman_id": "f8479d52-a0a4-417c-b3da-69c4162bcfa6",
+					"id": "f8479d52-a0a4-417c-b3da-69c4162bcfa6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -971,8 +957,7 @@
 								{
 									"id": "b604a7b9-d400-4adc-8834-a17b7f426777",
 									"key": "orderId",
-									"value": "{{orderId}}",
-									"type": "string"
+									"value": "{{orderId}}"
 								}
 							]
 						}
@@ -980,7 +965,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "33e6f6fd-c634-411c-9d33-3da9741cff14"
+			"id": "33e6f6fd-c634-411c-9d33-3da9741cff14"
 		},
 		{
 			"name": "Missing Authorization",
@@ -1002,7 +987,7 @@
 									}
 								}
 							],
-							"_postman_id": "4f8c1787-6b95-47b2-8917-06cb57aeeda1",
+							"id": "4f8c1787-6b95-47b2-8917-06cb57aeeda1",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1043,7 +1028,7 @@
 									}
 								}
 							],
-							"_postman_id": "628cd206-c7c4-4678-9226-fc857f7ab5cf",
+							"id": "628cd206-c7c4-4678-9226-fc857f7ab5cf",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1062,7 +1047,7 @@
 							"response": []
 						}
 					],
-					"_postman_id": "625ef44b-945e-4ab0-ab07-fb1967302fc8",
+					"id": "625ef44b-945e-4ab0-ab07-fb1967302fc8",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1087,8 +1072,7 @@
 								]
 							}
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Invalid Token",
@@ -1107,7 +1091,7 @@
 									}
 								}
 							],
-							"_postman_id": "2fde4ebe-baf5-4f90-8dab-34a566813117",
+							"id": "2fde4ebe-baf5-4f90-8dab-34a566813117",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1147,7 +1131,7 @@
 									}
 								}
 							],
-							"_postman_id": "a1b31f63-852e-4770-ab27-9d948425c719",
+							"id": "a1b31f63-852e-4770-ab27-9d948425c719",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1165,7 +1149,7 @@
 							"response": []
 						}
 					],
-					"_postman_id": "67bc524b-7b6b-4292-a563-edba1ea0555a",
+					"id": "67bc524b-7b6b-4292-a563-edba1ea0555a",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1190,11 +1174,10 @@
 								]
 							}
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				}
 			],
-			"_postman_id": "a9700f91-b0d5-4a7d-b42c-bf3bbb148737",
+			"id": "a9700f91-b0d5-4a7d-b42c-bf3bbb148737",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1244,7 +1227,7 @@
 							}
 						}
 					],
-					"_postman_id": "50b5adf1-69f2-4e09-a67f-4d2c00bfa041",
+					"id": "50b5adf1-69f2-4e09-a67f-4d2c00bfa041",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1295,7 +1278,7 @@
 							}
 						}
 					],
-					"_postman_id": "35d32c6a-b733-450f-b826-6979bfab2310",
+					"id": "35d32c6a-b733-450f-b826-6979bfab2310",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1346,7 +1329,7 @@
 							}
 						}
 					],
-					"_postman_id": "13fd7cc0-d49d-4971-af2c-15cfbc178acd",
+					"id": "13fd7cc0-d49d-4971-af2c-15cfbc178acd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1401,7 +1384,7 @@
 							}
 						}
 					],
-					"_postman_id": "13a9f77a-7d83-45d6-88a8-2d53da1c6af9",
+					"id": "13a9f77a-7d83-45d6-88a8-2d53da1c6af9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1432,7 +1415,7 @@
 					"response": []
 				}
 			],
-			"_postman_id": "2d5c6b77-6e79-4ce2-8930-af476a823114"
+			"id": "2d5c6b77-6e79-4ce2-8930-af476a823114"
 		}
 	],
 	"event": [
@@ -1459,52 +1442,46 @@
 	],
 	"variable": [
 		{
-			"id": "6f9ec325-2342-4071-bb2c-7babb9169865",
+			"id": "f1b04c8a-73cc-419e-8c04-582e73dcb69d",
 			"key": "baseUrl",
-			"value": "https://simple-grocery-store-api.glitch.me",
-			"type": "string"
+			"value": "https://simple-grocery-store-api.glitch.me"
 		},
 		{
-			"id": "db522f88-31e8-42e7-bde1-08654ca119fe",
+			"id": "012852fb-2392-4e98-89fa-d3bc61da3e33",
 			"key": "accessToken",
 			"value": "171e6120d7e6046191d946e9d5af6ed1edfd495d7afcbac483a9d063bcc32c60",
 			"type": "string"
 		},
 		{
-			"id": "d38714b4-ffda-4c43-9528-4609342fe6ac",
+			"id": "2d4312b9-de7e-4ca4-b34e-4d81fca364b5",
 			"key": "cartId",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "80ecea2c-0d77-4e8b-b662-064f7ee89ab3",
+			"id": "4650d450-6a52-4b66-817b-f8016c50a7ee",
 			"key": "orderId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "0f8cabcc-da24-45f3-9f1b-b1eb00bcc1f9",
+			"id": "c95f795b-8abd-4b97-b7b2-576c8ea6c050",
 			"key": "productIds",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "a050269c-d2d1-4998-84aa-3374a01316e5",
+			"id": "a6e38e95-f2b6-4cb1-9705-11be9b0e830d",
 			"key": "randomProductId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "b115231d-2a8c-4d12-af86-bb0845bbf8b1",
+			"id": "56f38220-23fc-498c-a1cf-f27d7e6e3ef5",
 			"key": "itemId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "7b3fd83b-e170-44f7-9f00-0cc9d0dc3b9a",
+			"id": "7dc0ca4c-be75-426d-990c-5f91a610fb72",
 			"key": "test",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
