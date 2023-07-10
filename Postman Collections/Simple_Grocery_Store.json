@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "697fa108-b0c2-4c81-823f-31bb6d67e652",
-		"name": "Simple Grocery Store API - New",
+		"name": "Simple Grocery Store API",
 		"description": "**API Documentation:**\n\n[https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md](https://github.com/vdespa/Postman-Complete-Guide-API-Testing/blob/main/simple-grocery-store-api.md)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
